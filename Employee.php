@@ -24,4 +24,8 @@
 
 		function assignWorkPlace($place){
 		}
+
+		public function callDoSomething(){
+			$this->doSomething("Dele");
+		}
 	}

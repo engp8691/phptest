@@ -5,17 +5,22 @@
 	require './com/abc/SplStack.php';
 
 	$employee = new Employee();
-	$student = new Student();
+	$student = new Student("Yonglin");
 
 	// It is already defined in the base class
 	$employee->setLanguage();
 	$employee->write_info();
 	echo $employee->getLanguage() . "\n";
+	$employee->liveWithFamily();
+	// This method is protected, it can only be used in the class or its sub classes.
+	// $employee->doSomething("It is accessible only in the class or its extended classes");
+	$employee->callDoSomething();
 
 	$student->setLanguage("Chinese");
 	$student->write_info();
 	$student->addGas(87);
 	$student->igniteIt("Remote Controler");
+	$student->liveWithFamily();
 	echo $student->getLanguage() . "\n";
 
 	$q = new com\abc\SplQueue();

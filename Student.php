@@ -6,6 +6,10 @@
 		public $StudentNumber;
 		public $CourseName;
 
+		function __construct($name) {		
+			$this->StudentNumber = $name;		
+		}
+
 		public function write_info(){
 			//sql codes here
 			echo "Writing ". $this->LastName . "'s info to student dbase table <br>\n\n";
@@ -17,5 +21,9 @@
 
         public function igniteIt($ignitionType="Keyless"){
 			echo "Student is igniting the car with $ignitionType \n";
+		}
+
+		public function liveWithFamily(){
+			echo "MayBe\n";
 		}
 	}

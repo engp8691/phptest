@@ -14,5 +14,13 @@
 		public function getLanguage(){
 			return $this->Language;
 		}
+
+		protected function doSomething ($description) {
+			echo $description . "\n";
+		}
+
+		public function liveWithFamily(){
+			echo "Yes\n";
+		}
 	}
 
