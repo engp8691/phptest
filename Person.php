@@ -22,5 +22,9 @@
 		public function liveWithFamily(){
 			echo "Yes\n";
 		}
+
+		public function anotherPublicFunction(){
+			echo "anotherPublicFunction Yes\n";
+		}
 	}
 
