@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>The phone seearch form</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
+<link rel="stylesheet" href="./css/style.css"/>
+
+</head>
+<body> 
+
+<script type="text/javascript">
+	$(document).ready(function() { 
+		$("#myform").submit(function(event) {
+ 			event.preventDefault();
+			var phonenumber = $("#phone").val();
+			$.get("./query.php?phone="+phonenumber, function(data, status){
+				console.log(data);
+				if(data.status === "success"){
+					if(data.count===1){
+						window.location.href = "phptest_phone_xml.php?phone=" + phonenumber;
+					}else{
+						window.location.href = "clicklink.php?phone=" + phonenumber;
+					}
+				}else if(data === "failed"){
+					alert("Cannot find the record");
+				}else{
+					alert("Do not find the record in the DB");
+				}
+			});
+      });
+    });
+
+</script>
+
+<form id="myform" action="" title="" method="post">
+    <div>
+        <label class="Phone Number">Phone Number</label>
+        <input type="text" id="phone" name="phone" value="3867540455">
+    </div>
+    <div>
+        <input type="submit" id="submitButton"  name="submitButton" value="Submit">
+    </div>
+</form>
+
+<p>Note:</p>
+<p>Please use the numbers of 3867540455,  3867540445, 1234567890 to test them</p>
+
+</body>
+
+</html>
