@@ -3,6 +3,11 @@
 	require 'Student.php';
 	require './com/abc/SplQueue.php';
 	require './com/abc/SplStack.php';
+	require './com/abc/Multiton.php';
+	require './Singleton.php';
+	require './Factory.php';
+
+	use com\abc\SplQueue;
 
 	$employee = new Employee();
 	$student = new Student("Yonglin");
@@ -23,7 +28,9 @@
 	$student->liveWithFamily();
 	echo $student->getLanguage() . "\n";
 
-	$q = new com\abc\SplQueue();
+	// It is using the use statement
+	$q = new SplQueue(); // this is to use com\abc\SplQueue
+	// $q = new com\abc\SplQueue();
 
 	$q->enqueue(1);
 	$q->enqueue("b");
@@ -31,7 +38,7 @@
 	$q->print();
 	print_r($q);
 
-	$queue = new SplQueue();
+	$queue = new \SplQueue();
 	$queue->push("Tom");
 	$queue->push("Gary");
 	$queue->push("Dan");
@@ -58,5 +65,28 @@
 	print_r($stack);
 	$stack->pop(); // remove the last one
 	print_r($stack);
+
+	// this is not doable. It is private now
+	// $connectionInstance = new ConnectDb();
+	$connectionInstance = ConnectDb::getInstance();
+	$conn = $connectionInstance->getConnection();
+	var_dump($conn);
+
+	// the connection is the same	
+	$connectionInstance = ConnectDb::getInstance();
+	$conn2 = $connectionInstance->getConnection();
+	var_dump($conn2);
+
+	// The factory pattern
+	$mycar = AutomobileFactory::create('Honda', 'CRV');
+	print_r($mycar->getMakeAndModel());
+	print "\n";
+
+	$instance1 = com\abc\Multiton::getInstance("intance_one");
+	var_dump($instance1);
+	$instance2 = com\abc\Multiton::getInstance("intance_two");
+	var_dump($instance2);
+	$instance3 = com\abc\Multiton::getInstance("intance_two");
+	var_dump($instance3);
 	
 
