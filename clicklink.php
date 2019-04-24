@@ -1,19 +1,16 @@
 <?php
 	require './Singleton.php';
-	$phone = $_GET['phone'];
+	$data = $_GET['data'];
 
 	header("Content-Type: text/html");
 	include "header.html";
 
-	$instance = ConnectDb::getInstance();
-	$conn = $instance->getConnection();
-	$stmt = $conn->prepare("SELECT * FROM phonebook where phone = ?");
+	$jsonArray = json_decode($data, true);
 
-	if ($stmt->execute(array($phone))){
-		while ($row = $stmt->fetch()) {
-			$name = $row[firstname] . " " . $row[lastname];
-			echo '<a href="./phptest_phone_xml.php?phone='.$row[phone].'">'.$row[phone] . ' ' . $name .'</a><br/>';
-		}
+	$count = sizeof($jsonArray);
+	for($i=0; $i<$count; $i++){
+		echo '<a href="https://www.infopay.com/phptest.php?username=accucomtest&password=test104&firstname=$jsonArray[$i]["firstname"]&middle_initial=$jsonArray[$i]["firstname"]&lastname=$jsonArray[$i]["lastname"]&city=$jsonArray[$i]["city"]&state=$jsonArray[$i]["state"]&zip=&client_reference=test&phone=&housenumber=&streetname=.">' . $jsonArray[$i]["name"] . '</a><br/>';
 	}
 
 	include "footer.html";
+

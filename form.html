@@ -14,12 +14,14 @@
  			event.preventDefault();
 			var phonenumber = $("#phone").val();
 			$.get("./query.php?phone="+phonenumber, function(data, status){
-				console.log(data);
+				console.log(data, data.status);
+				alert("Found " + data.count + " records");
 				if(data.status === "success"){
 					if(data.count===1){
-						window.location.href = "phptest_phone_xml.php?phone=" + phonenumber;
+						window.location.href = "https://www.infopay.com/phptest_phone_xml.php?username=accucomtest&password=test104&areacode=386&phone=7540455";
 					}else{
-						window.location.href = "clicklink.php?phone=" + phonenumber;
+						var myJSON = JSON.stringify(data);
+						window.location.href = "clicklink.php?data=" + myJSON;
 					}
 				}else if(data === "failed"){
 					alert("Cannot find the record");
